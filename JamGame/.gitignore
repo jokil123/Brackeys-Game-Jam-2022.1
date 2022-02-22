@@ -11,6 +11,7 @@
 /[Mm]emoryCaptures/
 
 /[Uu]ser[Ss]ettings/
+/[Uu]ser[Ss]ettings/Layouts/*
 
 ProjectVersion.txt
 /[Pp]ackages/packages-lock.json
