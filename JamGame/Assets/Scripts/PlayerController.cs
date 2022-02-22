@@ -5,17 +5,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public new Rigidbody rigidbody;
+    public GameObject virtualCamera;
 
     private Plane floorPlane = new Plane(Vector3.up, Vector3.zero);
     private float distanceToStopMoving = 1.0f;
-    private float moveSpeed = 0.03f;
+    private float moveSpeed = 0.02f;
     private float rotateSpeed = 10.0f;
+    private float cameraStartingAngle = -45f;
     
     
     // Start is called before the first frame update
     void Start()
     {
-
+        virtualCamera.transform.rotation.eulerAngles = new Vector3(45, cameraStartingAngle, 0);
     }
 
     // Update is called once per frame
