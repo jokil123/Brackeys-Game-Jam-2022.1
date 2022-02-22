@@ -10,9 +10,14 @@ public class PickUpItem : MonoBehaviour
     private bool pickUpable = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         pickUpUI = GameObject.FindGameObjectWithTag("PickUpUI");
+    }
+
+    private void Start()
+    {
+        pickUpUI.SetActive(false);
     }
 
     // Update is called once per frame
