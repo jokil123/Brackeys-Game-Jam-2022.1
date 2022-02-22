@@ -5,29 +5,36 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public new Rigidbody rigidbody;
-    public GameObject virtualCamera;
+    public Transform cameraTransform;
 
     private Plane floorPlane = new Plane(Vector3.up, Vector3.zero);
     private float distanceToStopMoving = 1.0f;
-    private float moveSpeed = 0.02f;
-    private float rotateSpeed = 10.0f;
-    private float cameraStartingAngle = -45f;
+    private float moveSpeed = 0.2f;
+    private float rotateSpeed = 7.0f;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        virtualCamera.transform.rotation.eulerAngles = new Vector3(45, cameraStartingAngle, 0);
+
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            RotateCamera();
+        }
+    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Rotate();
         if (Input.GetMouseButton(0))
         {
             Move();
         }
+
     }
 
     private void Move()
@@ -50,6 +57,11 @@ public class PlayerController : MonoBehaviour
         _direction = (_target - transform.position).normalized;
         _lookRotation = Quaternion.LookRotation(_direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * rotateSpeed);
+    }
+
+    private void RotateCamera()
+    {
+        cameraTransform.Rotate(0, 90, 0, Space.World);
     }
 
     private Vector3 GetMouseLocation()
