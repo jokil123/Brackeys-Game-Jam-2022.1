@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private float distanceToStopMoving = 1.0f;
     private float moveSpeed = 0.2f;
     private float rotateSpeed = 7.0f;
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Quaternion _lookRotation;
         Vector3 _direction;
         Vector3 _target = GetMouseLocation();
-        
+
         _target.y = transform.position.y;
 
         _direction = (_target - transform.position).normalized;
