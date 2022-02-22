@@ -14,6 +14,9 @@
 /[Uu]ser[Ss]ettings/Layouts/*
 /UserSettings/
 
+packages-lock.json
+/JamGame/Packages/packages-lock.json
+
 ProjectVersion.txt
 /[Pp]ackages/packages-lock.json
 
