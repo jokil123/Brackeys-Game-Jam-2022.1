@@ -12,6 +12,7 @@
 
 /[Uu]ser[Ss]ettings/
 /[Uu]ser[Ss]ettings/Layouts/*
+/UserSettings/
 
 ProjectVersion.txt
 /[Pp]ackages/packages-lock.json
