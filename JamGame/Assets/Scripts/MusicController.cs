@@ -15,7 +15,7 @@ public class MusicController : MonoBehaviour
  
     [SerializeField]
     private List<AudioSource> sources = new List<AudioSource>();
-    public void SetIntensity(int intensitya)
+    public IEnumerator SetIntensity(int intensitya)
     {
         for (float Vol = 0f; Vol <= volume; Vol += 0.1f)
         {
