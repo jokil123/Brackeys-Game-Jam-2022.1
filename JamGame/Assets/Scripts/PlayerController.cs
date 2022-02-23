@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private Plane floorPlane = new Plane(Vector3.up, Vector3.zero);
     private float distanceToStopMoving = 1.0f;
-    private float moveSpeed = 0.2f;
+    private float moveSpeed = 0.03f;
     private float rotateSpeed = 7.0f;
 
 
@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Move();
+        } else
+        {
+            rigidbody.gameObject.GetComponentInChildren<Animator>().SetFloat("Walking Speed", 0);
         }
 
     }
@@ -40,10 +43,12 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 location = GetMouseLocation();
-        location.y += 2;
+        // location.y += 2;
 
         //rigidbody.AddRelativeForce((location - transform.position).normalized * moveSpeed, ForceMode.Force);
         rigidbody.position = Vector3.MoveTowards(rigidbody.position, location, moveSpeed);
+
+        rigidbody.gameObject.GetComponentInChildren<Animator>().SetFloat("Walking Speed", moveSpeed * 35);
     }
 
     private void Rotate()
