@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - PickUpUI
+  - PickUpManager
   layers:
   - Default
   - TransparentFX
