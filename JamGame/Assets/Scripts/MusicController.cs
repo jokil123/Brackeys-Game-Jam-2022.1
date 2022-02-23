@@ -11,15 +11,19 @@ public class MusicController : MonoBehaviour
     private float volume = 0.5f ;
     [SerializeField]
     private AudioSource Intro;
-
+    
  
     [SerializeField]
     private List<AudioSource> sources = new List<AudioSource>();
-    public void SetIntensity(int intensity)
+    public void SetIntensity(int intensitya)
     {
-        sources[intensity].volume=0;
-        this.intensity = intensity;
-        sources[intensity].volume = volume;
+        for (float Vol = 0f; Vol <= volume; Vol += 0.1f)
+        {
+            sources[intensitya].volume =sources[intensitya].volume+0.1f;
+            sources[intensity].volume=sources[intensity].volume-0.1f;
+            yield return new WaitForSeconds(.1f);
+        }
+        intensity = intensitya;
     }
     public void SetVolume(float Volume)
     {
