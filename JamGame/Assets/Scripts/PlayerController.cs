@@ -6,30 +6,43 @@ public class PlayerController : MonoBehaviour
 {
     public new Rigidbody rigidbody;
     public Transform cameraTransform;
+    public Transform desiredCammeraRotationTransform;
 
     private Plane floorPlane = new Plane(Vector3.up, Vector3.zero);
     private float distanceToStopMoving = 1.0f;
-    private float moveSpeed = 0.03f;
+    public float moveSpeed = 0.03f;
     private float rotateSpeed = 7.0f;
+    private Quaternion desiredCameraRotation;
+    private float cameraRotationCoolDown = 0.2f;
+    private float cameraRotationCoolDownStart = 0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        desiredCammeraRotationTransform.rotation = cameraTransform.rotation;
+        desiredCameraRotation = cameraTransform.rotation;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            RotateCamera();
+            if (Time.time > cameraRotationCoolDownStart + cameraRotationCoolDown)
+            {
+                desiredCammeraRotationTransform.Rotate(0, -90, 0, Space.World);
+                desiredCameraRotation = desiredCammeraRotationTransform.rotation;
+                cameraRotationCoolDownStart = Time.time;
+            }
+            //desiredCameraRotation *= Quaternion.Euler(0, 90, 0);
+            //desiredCameraRotation.Rotate(0, 90, 0, Space.World);
         }
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         Rotate();
+        RotateCamera();
         if (Input.GetMouseButton(0))
         {
             Move();
@@ -66,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotateCamera()
     {
-        cameraTransform.Rotate(0, 90, 0, Space.World);
+        cameraTransform.rotation = Quaternion.RotateTowards(cameraTransform.rotation, desiredCameraRotation, 10);
     }
 
     private Vector3 GetMouseLocation()

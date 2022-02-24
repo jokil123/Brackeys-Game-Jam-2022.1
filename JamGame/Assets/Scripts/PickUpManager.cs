@@ -8,6 +8,7 @@ public class PickUpManager : MonoBehaviour
     public GameObject heldItem;
     public GameObject objectivePostIt;
     public List<string> objectiveNames = new List<string>();
+    public ParticleSystem particleSystem;
 
     private Dictionary<string,bool> objectiveList = new Dictionary<string, bool>();
     private TextMeshProUGUI objectiveUIText;
@@ -45,6 +46,8 @@ public class PickUpManager : MonoBehaviour
         if (heldItem != null)
         {
             objectiveList[heldItem.GetComponent<PickUpItem>().ItemName] = true;
+            particleSystem.Play();
+            heldItem = null;
             UpdateUI();
         }
     }
