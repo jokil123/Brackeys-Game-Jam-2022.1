@@ -25,10 +25,12 @@ public class PickUpItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && pickUpable)
+        if (Input.GetKeyDown(KeyCode.E) && pickUpable && pickUpManager.heldItem == null)
         {
             Debug.Log($"Picked up {ItemName}!");
             //TODO: pick up item
+            pickUpManager.pickedUpUIText.text = $"PICKED UP {ItemName.ToUpper()}";
+            pickUpManager.pickedUpUIText.gameObject.SetActive(true);
             pickUpManager.heldItem = gameObject;
             pickUpUI.SetActive(false);
             gameObject.SetActive(false);

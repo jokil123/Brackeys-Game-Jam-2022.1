@@ -5,13 +5,14 @@ using UnityEngine.AI;
 
 public class PlayerFollower : MonoBehaviour
 {
+    private NavMeshAgent ghostAgent;
+    private NavMeshAgent playerAgent;
 
-
-    public NavMeshAgent ghostAgent;
-    public NavMeshAgent playerAgent;
-   
-    
-
+    private void Start()
+    {
+        playerAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
+        ghostAgent = GetComponent<NavMeshAgent>();
+    }
 
     // Update is called once per frame
     void Update()

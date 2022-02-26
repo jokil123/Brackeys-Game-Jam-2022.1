@@ -9,6 +9,7 @@ public class PickUpManager : MonoBehaviour
     public GameObject objectivePostIt;
     public List<string> objectiveNames = new List<string>();
     public ParticleSystem particleSystem;
+    public TextMeshProUGUI pickedUpUIText;
 
     private Dictionary<string,bool> objectiveList = new Dictionary<string, bool>();
     private TextMeshProUGUI objectiveUIText;
@@ -19,6 +20,7 @@ public class PickUpManager : MonoBehaviour
     private void Awake()
     {
         objectiveUIText = objectivePostIt.GetComponentInChildren<TextMeshProUGUI>();
+        pickedUpUIText.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -47,6 +49,7 @@ public class PickUpManager : MonoBehaviour
         {
             objectiveList[heldItem.GetComponent<PickUpItem>().ItemName] = true;
             particleSystem.Play();
+            pickedUpUIText.gameObject.SetActive(false);
             heldItem = null;
             UpdateUI();
         }
