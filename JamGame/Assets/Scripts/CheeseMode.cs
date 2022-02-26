@@ -16,8 +16,6 @@ public class CheeseMode : MonoBehaviour
 
             foreach (MeshRenderer meshRenderer in meshRenderers)
             {
-                Debug.Log(meshRenderer.gameObject.transform.root.name.Contains("Player"));
-
                 if (meshRenderer.gameObject.transform.root.name.Contains("Player")) { continue; }
 
                 var mats = new Material[meshRenderer.materials.Length];
@@ -29,7 +27,7 @@ public class CheeseMode : MonoBehaviour
 
                 meshRenderer.materials = mats;
             }
-            // cheeseModeActive = true;
+            cheeseModeActive = true;
         }
     }
 }
