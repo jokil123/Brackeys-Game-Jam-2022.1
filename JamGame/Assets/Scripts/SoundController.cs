@@ -69,13 +69,13 @@ public class SoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Zufall = return Random.Range(0, 500);
-        if(Zufall = 2)
+        Zufall = Random.Range(0, 500);
+        if(Zufall == 2)
         {
             PlayMonsterSound();
         }
-        Zufall = return Random.Range(0, 1500);
-        if (Zufall = 1)
+        Zufall = Random.Range(0, 1500);
+        if (Zufall == 1)
         {
             PlayWaterSound();
         }
