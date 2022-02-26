@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviour
 {
+    private int Zufall = 0;
     [SerializeField]
     private float volume = 0.5f;
     [SerializeField]
@@ -68,6 +69,15 @@ public class SoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Zufall = return Random.Range(0, 500);
+        if(Zufall = 2)
+        {
+            PlayMonsterSound();
+        }
+        Zufall = return Random.Range(0, 1500);
+        if (Zufall = 1)
+        {
+            PlayWaterSound();
+        }
     }
 }
