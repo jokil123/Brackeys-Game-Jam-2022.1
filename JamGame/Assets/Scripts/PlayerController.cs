@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
             Move();
         } else
         {
-            rigidbody.gameObject.GetComponentInChildren<Animator>().SetFloat("Walking Speed", 0);
+            SetAnimatorMoveSpeed(0);
         }
 
     }
@@ -61,7 +61,17 @@ public class PlayerController : MonoBehaviour
         //rigidbody.AddRelativeForce((location - transform.position).normalized * moveSpeed, ForceMode.Force);
         rigidbody.position = Vector3.MoveTowards(rigidbody.position, location, moveSpeed);
 
-        rigidbody.gameObject.GetComponentInChildren<Animator>().SetFloat("Walking Speed", moveSpeed * 35);
+        SetAnimatorMoveSpeed(35);
+    }
+
+    private void SetAnimatorMoveSpeed(float speed)
+    {
+        foreach (Animator animator in rigidbody.gameObject.GetComponentsInChildren<Animator>())
+        {
+            if (animator.gameObject.name.Contains("Character Animated")) {
+                animator.SetFloat("Walking Speed", moveSpeed * speed);
+            }
+        }
     }
 
     private void Rotate()
