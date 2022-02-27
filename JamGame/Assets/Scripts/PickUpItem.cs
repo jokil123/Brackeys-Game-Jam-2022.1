@@ -41,6 +41,7 @@ public class PickUpItem : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            Debug.Log("Test");
             pickUpUI.SetActive(true);
             pickUpUI.GetComponentInChildren<TextMeshProUGUI>().text = $"PICK UP {ItemName.ToUpper()}!";
             pickUpable = true;

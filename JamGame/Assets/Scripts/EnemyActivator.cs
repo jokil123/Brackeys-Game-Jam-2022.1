@@ -34,25 +34,32 @@ public class EnemyActivator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (playerFollower.isActive) { return; }
-        if (isFakeObject)
+        if (other.gameObject.tag == "Player")
         {
-            isToggleable = true;
-            pickUpManager.panelUIText.text = $"PICK UP {playerFollower.itemName}";
-            panelUI.SetActive(true);
-        } else
-        {
-            playerFollower.isActive = true;
-            playerFollower.enemyProp.SetActive(true);
+            if (playerFollower.isActive) { return; }
+            if (isFakeObject)
+            {
+                isToggleable = true;
+                pickUpManager.panelUIText.text = $"PICK UP {playerFollower.itemName}";
+                panelUI.SetActive(true);
+            }
+            else
+            {
+                playerFollower.isActive = true;
+                playerFollower.enemyProp.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (playerFollower.isActive) { return; }
-        if (isFakeObject)
+        if (other.gameObject.tag == "Player")
         {
-            panelUI.SetActive(false);
+            if (playerFollower.isActive) { return; }
+            if (isFakeObject)
+            {
+                panelUI.SetActive(false);
+            }
         }
     }
 
