@@ -791,6 +791,7 @@ GameObject:
   - component: {fileID: 7823839417566756568}
   - component: {fileID: 8502191306666201873}
   - component: {fileID: 1925948254}
+  - component: {fileID: 8119923028121536582}
   m_Layer: 15
   m_Name: PlayerModel
   m_TagString: Player
@@ -963,6 +964,52 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8119923028121536582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564674137269790526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b657ca3a86dbe448d236fda43d5ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioGroups:
+  - name: footsteps
+    clips:
+    - {fileID: 8300000, guid: d6f1ad61fb1380c4680fcc62d9f0840e, type: 3}
+  - name: door
+    clips:
+    - {fileID: 8300000, guid: 06d39a21cef8fd947b10b53b5756d57d, type: 3}
+  - name: monster
+    clips:
+    - {fileID: 8300000, guid: c1767fc4f09d4d74fb78da73e623802f, type: 3}
+    - {fileID: 8300000, guid: 71eb50f9a3deee6449b207e61d8abd48, type: 3}
+    - {fileID: 8300000, guid: b9d437a6ad6cd544f935b7efa5feb58e, type: 3}
+    - {fileID: 8300000, guid: bd52093e45a1dc64797fab72c9d6eca2, type: 3}
+    - {fileID: 8300000, guid: bded443d4d468b24b8b37b85da7f6e91, type: 3}
+    - {fileID: 8300000, guid: 62ecf94e61b83b74eb1051b7edd74f20, type: 3}
+    - {fileID: 8300000, guid: e63b60adc5faa3647a7106707150846b, type: 3}
+    - {fileID: 8300000, guid: 20d923825e60ab748b6aac999daeee90, type: 3}
+    - {fileID: 8300000, guid: 6afcb12c86ecac54680a499202672cdd, type: 3}
+    - {fileID: 8300000, guid: db7296f2cae8230438743767bd605ada, type: 3}
+    - {fileID: 8300000, guid: 6033cb78556ebb64bbea9b8b98d2bf84, type: 3}
+  - name: metalFalling
+    clips:
+    - {fileID: 8300000, guid: 22acde2c3ac32d84f81098e4c92c5ff6, type: 3}
+  - name: waterSplash
+    clips:
+    - {fileID: 8300000, guid: 24acb6e584a829442a39e5c469342c6e, type: 3}
+    - {fileID: 8300000, guid: f7dbe589de4207e4d9e0af940f427320, type: 3}
+    - {fileID: 8300000, guid: babd14fcf8742294696fbfba7c78e4cb, type: 3}
+  - name: itemDrop
+    clips:
+    - {fileID: 8300000, guid: a783108463c879e4e95a3a5bcbe36d23, type: 3}
+  - name: itemEquip
+    clips:
+    - {fileID: 8300000, guid: cff4e0f4913b803488d56278e4a206ad, type: 3}
 --- !u!1 &8564674137634746880
 GameObject:
   m_ObjectHideFlags: 0
