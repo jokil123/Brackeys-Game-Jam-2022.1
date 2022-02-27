@@ -9,10 +9,11 @@ public class PlayerFollower : MonoBehaviour
     public bool isRevealed = false;
     public bool isActive = false;
     public string itemName;
+    public float coolDownLength;
 
     private NavMeshAgent ghostAgent;
     private NavMeshAgent playerAgent;
-    public float revealCDRemaining = 2f;
+    private float revealCDRemaining;
     private PlayerController controller;
 
     [SerializeField]
@@ -23,6 +24,7 @@ public class PlayerFollower : MonoBehaviour
         playerAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
         controller = playerAgent.gameObject.GetComponent<PlayerController>();
         ghostAgent = GetComponent<NavMeshAgent>();
+        revealCDRemaining = coolDownLength;
     }
 
     // Update is called once per frame
@@ -68,7 +70,7 @@ public class PlayerFollower : MonoBehaviour
 
     public void LookAt()
     {
-        revealCDRemaining = 2f;
+        revealCDRemaining = coolDownLength;
         enemyProp.SetActive(false);
         ghostAgent.isStopped = true;
         isRevealed = true;
