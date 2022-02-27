@@ -10,9 +10,9 @@ public class PickUpManager : MonoBehaviour
     public List<string> objectiveNames = new List<string>();
     public ParticleSystem particleSystem;
     public TextMeshProUGUI pickedUpUIText;
+    public TextMeshProUGUI objectiveUIText;
 
     private Dictionary<string,bool> objectiveList = new Dictionary<string, bool>();
-    private TextMeshProUGUI objectiveUIText;
 
     private string done = "- [done]";
     private string inProgress = "- [in Progress]";
@@ -41,6 +41,10 @@ public class PickUpManager : MonoBehaviour
         {
             objectivePostIt.SetActive(!objectivePostIt.activeInHierarchy);
         }
+        if (!pickedUpUIText.gameObject.activeInHierarchy && heldItem != null)
+        {
+            pickedUpUIText.gameObject.SetActive(true);
+        }
     }
 
     public void SetCompleted()
@@ -52,7 +56,7 @@ public class PickUpManager : MonoBehaviour
             pickedUpUIText.gameObject.SetActive(false);
             heldItem = null;
 
-            if (IsFinished)
+            if (IsFinished())
             {
                 // finish the game
                 // your mum was very proud
@@ -64,9 +68,9 @@ public class PickUpManager : MonoBehaviour
 
     bool IsFinished()
     {
-        foreach (string itemStatus in objectiveList)
+        foreach (string itemStatus in objectiveList.Keys)
         {
-            if (objectiveList[itemStatus] == false) { return false }
+            if (objectiveList[itemStatus] == false) { return false; }
         }
 
         return true;
