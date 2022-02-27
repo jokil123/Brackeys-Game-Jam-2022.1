@@ -18,13 +18,21 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 0.03f;
     private float rotateSpeed = 7.0f;
     private Quaternion desiredCameraRotation;
+    
+    [SerializeField]
+    private float footstepsVolume;
 
+    AudioSource footstepsAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         desiredCammeraRotationTransform.rotation = cameraTransform.rotation;
         desiredCameraRotation = cameraTransform.rotation;
+
+        footstepsAudio = gameObject.GetComponent<SoundController>().PlaySoundLooping("footsteps", transform, footstepsVolume);
+        footstepsAudio.Play();
+        //footstepsAudio.Pause();
     }
 
     private void Update()
@@ -74,6 +82,7 @@ public class PlayerController : MonoBehaviour
         } else
         {
             SetAnimatorMoveSpeed(0);
+            footstepsAudio.Pause();
         }
 
     }
@@ -87,6 +96,7 @@ public class PlayerController : MonoBehaviour
         rigidbody.position = Vector3.MoveTowards(rigidbody.position, location, moveSpeed);
 
         SetAnimatorMoveSpeed(35);
+        footstepsAudio.UnPause();
     }
 
     private void SetAnimatorMoveSpeed(float speed)
