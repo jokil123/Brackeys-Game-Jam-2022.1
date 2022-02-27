@@ -20,7 +20,7 @@ public class SoundController : MonoBehaviour
 
     private IEnumerator PlaySoundCoroutine(string groupName, Transform location, float volume)
     {
-        AudioSource audioSource = CreateAudioSource(RandomClip(groupName), transform, volume);
+        AudioSource audioSource = CreateAudioSource(RandomClip(groupName), location, volume);
 
         yield return new WaitForSeconds(audioSource.clip.length);
 
@@ -32,6 +32,7 @@ public class SoundController : MonoBehaviour
         GameObject soundObject = new GameObject();
         soundObject.name = "Audio Source";
         soundObject.transform.SetParent(location);
+        soundObject.transform.position = location.position;
         AudioSource audioSource = soundObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         audioSource.volume = volume;
