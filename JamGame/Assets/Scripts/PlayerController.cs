@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,12 +15,9 @@ public class PlayerController : MonoBehaviour
     public GameObject controllsPanel;
 
     private Plane floorPlane = new Plane(Vector3.up, Vector3.zero);
-    private float distanceToStopMoving = 1.0f;
     public float moveSpeed = 0.03f;
     private float rotateSpeed = 7.0f;
     private Quaternion desiredCameraRotation;
-    private float cameraRotationCoolDown = 0.2f;
-    private float cameraRotationCoolDownStart = 0f;
 
 
     // Start is called before the first frame update
@@ -34,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetMouseButton(0)
+        if (controllsPanel.activeInHierarchy && (Input.GetMouseButton(0)
             || Input.GetKeyDown(KeyCode.E)
             || Input.GetKeyDown(KeyCode.Escape)))
         {

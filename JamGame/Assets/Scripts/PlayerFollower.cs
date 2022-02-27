@@ -12,8 +12,11 @@ public class PlayerFollower : MonoBehaviour
 
     private NavMeshAgent ghostAgent;
     private NavMeshAgent playerAgent;
-    private float revealCDRemaining = 10f;
+    public float revealCDRemaining = 2f;
     private PlayerController controller;
+
+    [SerializeField]
+    private float volume;
 
     private void Start()
     {
@@ -48,6 +51,7 @@ public class PlayerFollower : MonoBehaviour
             }
             else if (isRevealed)
             {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<SoundController>().PlaySound("monster", gameObject.transform, volume);
                 isRevealed = false;
                 enemyProp.SetActive(true);
                 ghostAgent.isStopped = false;
@@ -64,7 +68,7 @@ public class PlayerFollower : MonoBehaviour
 
     public void LookAt()
     {
-        revealCDRemaining = 10f;
+        revealCDRemaining = 2f;
         enemyProp.SetActive(false);
         ghostAgent.isStopped = true;
         isRevealed = true;

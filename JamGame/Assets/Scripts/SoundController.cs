@@ -6,23 +6,38 @@ public class SoundController : MonoBehaviour
     [SerializeField]
     AudioGroup[] audioGroups;
 
-    public void PlaySound(string groupName, Transform location)
+    public void PlaySoundLooping(string groupName, Transform location, float volume)
     {
-        StartCoroutine(PlaySoundCoroutine(groupName, location));
+        AudioSource audioSource = CreateAudioSource(RandomClip(groupName), transform, volume);
+
+        audioSource.loop = true;
     }
 
-    private IEnumerator PlaySoundCoroutine(string groupName, Transform location)
+    public void PlaySound(string groupName, Transform location, float volume)
+    {
+        StartCoroutine(PlaySoundCoroutine(groupName, location, volume));
+    }
+
+    private IEnumerator PlaySoundCoroutine(string groupName, Transform location, float volume)
+    {
+        AudioSource audioSource = CreateAudioSource(RandomClip(groupName), transform, volume);
+
+        yield return new WaitForSeconds(audioSource.clip.length);
+
+        Destroy(audioSource.gameObject);
+    }
+
+    private AudioSource CreateAudioSource(AudioClip audioClip, Transform location, float volume)
     {
         GameObject soundObject = new GameObject();
         soundObject.name = "Audio Source";
         soundObject.transform.SetParent(location);
         AudioSource audioSource = soundObject.AddComponent<AudioSource>();
-        audioSource.clip = RandomClip(groupName);
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
         audioSource.Play();
 
-        yield return new WaitForSeconds(audioSource.clip.length);
-
-        Destroy(soundObject);
+        return audioSource;
     }
 
     private AudioClip RandomClip(string groupName)
