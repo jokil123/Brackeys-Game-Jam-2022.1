@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: TopLabel
+    second: {fileID: 2100000, guid: bfdd001d99dc4714b8b1f9b2356db668, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wine
     second: {fileID: 2100000, guid: b9e1d5309ad00834981a29917e394450, type: 2}
   materials:
