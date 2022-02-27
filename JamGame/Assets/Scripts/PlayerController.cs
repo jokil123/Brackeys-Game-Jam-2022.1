@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public new Rigidbody rigidbody;
     public Transform cameraTransform;
     public Transform desiredCammeraRotationTransform;
+    public bool isFrozen = false;
+    public GameObject gameOverUI;
+    public TextMeshProUGUI gameOverUIText;
+    public GameObject completeUI;
+    public TextMeshProUGUI completeUIText;
+    public GameObject controllsPanel;
 
     private Plane floorPlane = new Plane(Vector3.up, Vector3.zero);
     private float distanceToStopMoving = 1.0f;
@@ -26,21 +34,43 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if ((Input.GetMouseButton(0)
+            || Input.GetKeyDown(KeyCode.E)
+            || Input.GetKeyDown(KeyCode.Escape)))
+        {
+            controllsPanel.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (Time.time > cameraRotationCoolDownStart + cameraRotationCoolDown)
-            {
-                desiredCammeraRotationTransform.Rotate(0, -90, 0, Space.World);
-                desiredCameraRotation = desiredCammeraRotationTransform.rotation;
-                cameraRotationCoolDownStart = Time.time;
-            }
-            //desiredCameraRotation *= Quaternion.Euler(0, 90, 0);
-            //desiredCameraRotation.Rotate(0, 90, 0, Space.World);
+            Application.Quit();
         }
+
+        if (isFrozen)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            return;
+        }
+
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    if (Time.time > cameraRotationCoolDownStart + cameraRotationCoolDown)
+        //    {
+        //        desiredCammeraRotationTransform.Rotate(0, -90, 0, Space.World);
+        //        desiredCameraRotation = desiredCammeraRotationTransform.rotation;
+        //        cameraRotationCoolDownStart = Time.time;
+        //    }
+        //    //desiredCameraRotation *= Quaternion.Euler(0, 90, 0);
+        //    //desiredCameraRotation.Rotate(0, 90, 0, Space.World);
+        //}
     }
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (isFrozen) { return; }
         Rotate();
         RotateCamera();
         if (Input.GetMouseButton(0))
@@ -102,5 +132,18 @@ public class PlayerController : MonoBehaviour
             return rayCast.GetPoint(distance);
         }
         return Vector3.zero;
+    }
+
+    public void GameOver(string itemName)
+    {
+        gameOverUIText.text = $"GAME OVER!\nYou pissed your pants over a {itemName} and your mum is very disappointed!\nPress ENTER to try again...";
+        gameOverUI.SetActive(true);
+        isFrozen = true;
+    }
+
+    public void Complete()
+    {
+        completeUI.SetActive(true);
+        isFrozen = true;
     }
 }

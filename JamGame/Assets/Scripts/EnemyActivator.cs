@@ -5,9 +5,8 @@ using UnityEngine;
 public class EnemyActivator : MonoBehaviour
 {
     public bool isFakeObject;
-    public string fakeItemName;
-    public GameObject objectiveUI;
-    public GameObject pickUpUI;
+    public GameObject panelUI;
+    public GameObject pickedUpUI;
 
     private PickUpManager pickUpManager;
     private PlayerFollower playerFollower;
@@ -25,7 +24,7 @@ public class EnemyActivator : MonoBehaviour
         if (isToggleable && Input.GetKeyDown(KeyCode.E))
         {
             pickUpManager.pickedUpUIText.text = $"SOMETHING DOESNT SEEM RIGHT ABOUT THIS OBJECT...";
-            pickUpManager.pickedUpUIText.gameObject.SetActive(true);
+            pickedUpUI.SetActive(true);
             StartCoroutine(HideUI());
             playerFollower.isActive = true;
             playerFollower.enemyProp.SetActive(true);
@@ -38,8 +37,8 @@ public class EnemyActivator : MonoBehaviour
         if (isFakeObject)
         {
             isToggleable = true;
-            pickUpManager.objectiveUIText.text = $"PICK UP {fakeItemName}";
-            pickUpManager.objectiveUIText.gameObject.SetActive(true);
+            pickUpManager.panelUIText.text = $"PICK UP {playerFollower.itemName}";
+            panelUI.SetActive(true);
         } else
         {
             playerFollower.isActive = true;
@@ -52,13 +51,13 @@ public class EnemyActivator : MonoBehaviour
         if (playerFollower.isActive) { return; }
         if (isFakeObject)
         {
-            pickUpManager.objectiveUIText.gameObject.SetActive(false);
+            panelUI.SetActive(false);
         }
     }
 
     private IEnumerator HideUI()
     {
         yield return new WaitForSeconds(5);
-        pickUpManager.pickedUpUIText.gameObject.SetActive(false);
+        pickedUpUI.SetActive(false);
     }
 }

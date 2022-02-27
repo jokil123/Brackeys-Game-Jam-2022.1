@@ -8,27 +8,37 @@ public class PlayerFollower : MonoBehaviour
     public GameObject enemyProp;
     public bool isRevealed = false;
     public bool isActive = false;
+    public string itemName;
 
     private NavMeshAgent ghostAgent;
     private NavMeshAgent playerAgent;
     private float revealCDRemaining = 10f;
+    private PlayerController controller;
 
     private void Start()
     {
         playerAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
+        controller = playerAgent.gameObject.GetComponent<PlayerController>();
         ghostAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isActive) { return; }
+        if (!isActive || controller.controllsPanel.activeInHierarchy) { return; }
 
         if (!isRevealed)
         {
             if (Vector3.Distance(ghostAgent.transform.position, playerAgent.transform.position) > 1.2f)
             {
                 ghostAgent.SetDestination(playerAgent.destination);
+            } else
+            {
+                PlayerController controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+                if (!controller.isFrozen)
+                {
+                    controller.GameOver(itemName);
+                }
             }
         } else
         {

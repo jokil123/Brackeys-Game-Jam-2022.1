@@ -11,6 +11,7 @@ public class PickUpManager : MonoBehaviour
     public ParticleSystem particleSystem;
     public TextMeshProUGUI pickedUpUIText;
     public TextMeshProUGUI objectiveUIText;
+    public TextMeshProUGUI panelUIText;
 
     private Dictionary<string,bool> objectiveList = new Dictionary<string, bool>();
 
@@ -60,6 +61,7 @@ public class PickUpManager : MonoBehaviour
             {
                 // finish the game
                 // your mum was very proud
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Complete();
             }
 
             UpdateUI();
