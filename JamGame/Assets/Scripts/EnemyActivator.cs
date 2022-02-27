@@ -27,7 +27,8 @@ public class EnemyActivator : MonoBehaviour
             pickedUpUI.SetActive(true);
             StartCoroutine(HideUI());
             playerFollower.isActive = true;
-            playerFollower.enemyProp.SetActive(true);
+            playerFollower.isRevealed = true;
+            //playerFollower.enemyProp.SetActive(true);
         }
     }
 
