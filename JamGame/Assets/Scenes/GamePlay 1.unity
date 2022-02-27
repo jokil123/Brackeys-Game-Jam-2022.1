@@ -22171,6 +22171,18 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 64.505264
       objectReference: {fileID: 0}
+    - target: {fileID: 2311798461145416460, guid: 189188d309731354eb28bd41f31c4da6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249952340194725473, guid: 189188d309731354eb28bd41f31c4da6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474634419585351180, guid: 189188d309731354eb28bd41f31c4da6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8086098574423542871, guid: 189188d309731354eb28bd41f31c4da6, type: 3}
       propertyPath: volume
       value: 0.01
