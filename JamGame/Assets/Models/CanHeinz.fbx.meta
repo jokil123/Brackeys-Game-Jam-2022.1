@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 067bdb1f447df9740a6d6d699744fa93
+guid: 0622698c83a22fc42933d70868e7b4f6
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,23 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: 85b4b0ac618cc6a44b51e936676d742e, type: 2}
+      name: Mat
+    second: {fileID: 2100000, guid: b3e4d3e61c8859f40a03d02ba0518cb2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Label
-    second: {fileID: 2100000, guid: d8e91a6c72b1d8244a17eea1645cb970, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TopLabel
-    second: {fileID: 2100000, guid: bfdd001d99dc4714b8b1f9b2356db668, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wine
-    second: {fileID: 2100000, guid: b9e1d5309ad00834981a29917e394450, type: 2}
+      name: Mat.1
+    second: {fileID: 2100000, guid: 7fbfeb34bd965fb42b7ce753687bbc6e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
