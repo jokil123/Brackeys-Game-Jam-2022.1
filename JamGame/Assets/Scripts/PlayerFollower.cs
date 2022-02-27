@@ -6,9 +6,12 @@ using UnityEngine.AI;
 public class PlayerFollower : MonoBehaviour
 {
     public GameObject enemyProp;
+    public bool isRevealed = false;
+    public bool isActive = false;
 
     private NavMeshAgent ghostAgent;
     private NavMeshAgent playerAgent;
+    private float revealCDRemaining = 10f;
 
     private void Start()
     {
@@ -19,20 +22,38 @@ public class PlayerFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(ghostAgent.transform.position, playerAgent.transform.position) < 20.0)
+        if (!isActive) { return; }
+
+        if (!isRevealed)
         {
-            ghostAgent.SetDestination(playerAgent.destination);
-            foreach (Renderer renderer in enemyProp.GetComponentsInChildren<Renderer>())
+            if (Vector3.Distance(ghostAgent.transform.position, playerAgent.transform.position) > 1.2f)
             {
-                renderer.material.SetColor("_Color", Color.green);
-                Debug.Log("green");
+                ghostAgent.SetDestination(playerAgent.destination);
+            }
+        } else
+        {
+            if (revealCDRemaining > 0)
+            {
+                revealCDRemaining -= Time.deltaTime;
+            }
+            else if (isRevealed)
+            {
+                isRevealed = false;
+                enemyProp.SetActive(true);
+                ghostAgent.isStopped = false;
             }
         }
-        foreach (Renderer renderer in enemyProp.GetComponentsInChildren<Renderer>())
-        {
-            renderer.material.SetColor("_Color", Color.red);
-            Debug.Log("red");
-        }
+    }
 
+    public void Reveal()
+    {
+        isRevealed = true;
+        enemyProp.SetActive(false);
+        ghostAgent.isStopped = true;
+    }
+
+    public void LookAt()
+    {
+        revealCDRemaining = 10f;
     }
 }
