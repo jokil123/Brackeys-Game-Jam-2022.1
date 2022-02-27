@@ -51,8 +51,25 @@ public class PickUpManager : MonoBehaviour
             particleSystem.Play();
             pickedUpUIText.gameObject.SetActive(false);
             heldItem = null;
+
+            if (IsFinished)
+            {
+                // finish the game
+                // your mum was very proud
+            }
+
             UpdateUI();
         }
+    }
+
+    bool IsFinished()
+    {
+        foreach (string itemStatus in objectiveList)
+        {
+            if (objectiveList[itemStatus] == false) { return false }
+        }
+
+        return true;
     }
 
     void UpdateUI()
