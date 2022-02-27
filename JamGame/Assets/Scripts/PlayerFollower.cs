@@ -65,5 +65,8 @@ public class PlayerFollower : MonoBehaviour
     public void LookAt()
     {
         revealCDRemaining = 10f;
+        enemyProp.SetActive(false);
+        ghostAgent.isStopped = true;
+        isRevealed = true;
     }
 }
