@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                PlayerFollower.activeEnemies.Clear();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             return;

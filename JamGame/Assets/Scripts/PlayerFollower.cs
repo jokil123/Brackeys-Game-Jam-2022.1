@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class PlayerFollower : MonoBehaviour
 {
+    public static HashSet<GameObject> activeEnemies = new HashSet<GameObject>();
+
     public GameObject enemyProp;
     public bool isRevealed = false;
     public bool isActive = false;
@@ -19,6 +21,12 @@ public class PlayerFollower : MonoBehaviour
     [SerializeField]
     private float volume;
 
+    static void ActivateEnemy(GameObject enemy)
+    {
+        activeEnemies.Add(enemy);
+        Debug.Log(activeEnemies.Count);
+    }
+
     private void Start()
     {
         playerAgent = GameObject.FindGameObjectWithTag("Player").GetComponent<NavMeshAgent>();
@@ -30,6 +38,11 @@ public class PlayerFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isActive)
+        {
+            ActivateEnemy(gameObject);
+        }
+
         if (!isActive || controller.controllsPanel.activeInHierarchy) { return; }
 
         if (!isRevealed)

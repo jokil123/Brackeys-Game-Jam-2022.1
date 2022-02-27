@@ -25,6 +25,7 @@ public class MusicController : MonoBehaviour
         }
         intensity = intensitya;
     }
+
     public void SetVolume(float Volume)
     {
         this.volume = Volume;
