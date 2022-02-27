@@ -474,7 +474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6806314907136591658}
-  - component: {fileID: 1424209208940889931}
+  - component: {fileID: 889476577}
   m_Layer: 15
   m_Name: Flashlight
   m_TagString: Untagged
@@ -502,7 +502,7 @@ Transform:
   m_Father: {fileID: 6387639906752072326}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1424209208940889931
+--- !u!95 &889476577
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -788,8 +788,8 @@ GameObject:
   - component: {fileID: 8564674137269790521}
   - component: {fileID: 8564674137269790535}
   - component: {fileID: 7823839417566756568}
-  - component: {fileID: 7248120385273162424}
   - component: {fileID: 8502191306666201873}
+  - component: {fileID: 1925948254}
   m_Layer: 15
   m_Name: PlayerModel
   m_TagString: Player
@@ -922,7 +922,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheeseMaterial: {fileID: 2100000, guid: 532301bd138dc3144ad2655e171ebf7e, type: 2}
---- !u!195 &7248120385273162424
+--- !u!114 &8502191306666201873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564674137269790526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1461c520789924cbf59fc2d05552c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &1925948254
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -944,18 +956,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8502191306666201873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8564674137269790526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b1461c520789924cbf59fc2d05552c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8564674137634746880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,7 +1264,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9322034, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -1704,6 +1704,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3b2a7d336e4660342be6d41b7fec0473, type: 3}
   m_PrefabInstance: {fileID: 3486713203217586777}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5581556373665458708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9013638940889411661, guid: 3b2a7d336e4660342be6d41b7fec0473, type: 3}
+  m_PrefabInstance: {fileID: 3486713203217586777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3275761862755586813
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581556373665458708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3613567641014311022, guid: 3b2a7d336e4660342be6d41b7fec0473, type: 3}
+--- !u!114 &1653841458795490414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581556373665458708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b8b9ff14b8f7c45926cf4aaebb411a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4266852032896682123
 PrefabInstance:
   m_ObjectHideFlags: 0
