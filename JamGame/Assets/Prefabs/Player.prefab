@@ -901,6 +901,7 @@ MonoBehaviour:
   completeUIText: {fileID: 0}
   controllsPanel: {fileID: 0}
   moveSpeed: 0.03
+  footstepsVolume: 0.25
 --- !u!54 &8564674137269790535
 Rigidbody:
   m_ObjectHideFlags: 0

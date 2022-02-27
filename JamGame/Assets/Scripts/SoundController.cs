@@ -6,11 +6,13 @@ public class SoundController : MonoBehaviour
     [SerializeField]
     AudioGroup[] audioGroups;
 
-    public void PlaySoundLooping(string groupName, Transform location, float volume)
+    public AudioSource PlaySoundLooping(string groupName, Transform location, float volume)
     {
         AudioSource audioSource = CreateAudioSource(RandomClip(groupName), transform, volume);
 
         audioSource.loop = true;
+
+        return audioSource;
     }
 
     public void PlaySound(string groupName, Transform location, float volume)
