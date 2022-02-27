@@ -1,83 +1,55 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundController : MonoBehaviour
 {
-    private int Zufall = 0;
     [SerializeField]
-    private float volume = 0.5f;
-    [SerializeField]
-    private AudioSource DoorLocked = new AudioSource();
-    [SerializeField]
-    private AudioSource Dropoff = new AudioSource();
-    [SerializeField]
-    private AudioSource Pickup= new AudioSource();
-    [SerializeField]
-    private List<AudioSource> Door = new List<AudioSource>();
-    [SerializeField]
-    private List<AudioSource> WaterDrops = new List<AudioSource>();
-    [SerializeField]
-    private List<AudioSource> Monster = new List<AudioSource>();
-    
-    public static int Randomn(List<AudioSource> audioSources)
+    AudioGroup[] audioGroups;
+
+    public void PlaySound(string groupName, Transform location)
     {
-        return Random.Range(0,audioSources.Count);
-    }
-    public void PlayMonsterSound()
-    {
-        Monster[Randomn(Monster)].volume = volume;
-        Monster[Randomn(Monster)].Play();
-        
-    }
-    public void PlayWaterSound()
-    {
-        Monster[Randomn(WaterDrops)].volume = volume;
-        Monster[Randomn(WaterDrops)].Play();
-    }
-    public void PlayDoorSound()
-    {
-        Monster[Randomn(Door)].volume = volume;
-        Monster[Randomn(Door)].Play();
-    }
-    public void SetVolume(float Volume)
-    {
-        this.volume = Volume;
-    }
-    public void PickupSound()
-    {
-        Pickup.volume = volume;
-        Pickup.Play();
-    }
-    public void DropoffSound()
-    {
-        Dropoff.volume = volume;
-        Dropoff.Play();
-    }
-    public void DoorLockedSound()
-    {
-        DoorLocked.volume = volume;
-        DoorLocked.Play();
+        StartCoroutine(PlaySoundCoroutine(groupName, location));
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private IEnumerator PlaySoundCoroutine(string groupName, Transform location)
     {
-        
+        GameObject soundObject = new GameObject();
+        soundObject.name = "Audio Source";
+        soundObject.transform.SetParent(location);
+        AudioSource audioSource = soundObject.AddComponent<AudioSource>();
+        audioSource.clip = RandomClip(groupName);
+        audioSource.Play();
+
+        yield return new WaitForSeconds(audioSource.clip.length);
+
+        Destroy(soundObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private AudioClip RandomClip(string groupName)
     {
-        Zufall = Random.Range(0, 500);
-        if(Zufall == 2)
+        foreach (AudioGroup group in audioGroups)
         {
-            PlayMonsterSound();
+            if (group.name.ToLower() == groupName.ToLower())
+            {
+                return group.clips[Random.Range(0, group.clips.Length - 1)];
+            }
         }
-        Zufall = Random.Range(0, 1500);
-        if (Zufall == 1)
-        {
-            PlayWaterSound();
-        }
+
+        return null;
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.F2))
+    //    {
+    //        PlaySound("monster", gameObject.transform);
+    //    }
+    //}
+}
+
+[System.Serializable]
+public class AudioGroup
+{
+    public string name;
+    public AudioClip[] clips;
 }
